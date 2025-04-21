@@ -16,14 +16,13 @@ It works by creating a proxy server that listens for incoming requests. When a r
 ```bash
 git clone git@github.com:PoCInnovation/PoC-Defender.git
 ```
+
+### Quickstart
+
 - Execute the following command
 ```bash
 go run src/main.go
 ```
-
-### Quickstart
-
-[Explain how to run this project]
 
 ### Usage
 
