@@ -38,11 +38,11 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team ❤️
 
 Developers
-| [<img src="https://github.com/flav-code.png?size=85" width=85><br><sub>[flav-code]</sub>](https://github.com/flav-code) | [<img src="https://github.com/toutcourtlll.png?size=85" width=85><br><sub>[toutcourtlll]</sub>](https://github.com/toutcourtlll) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy)
+| [<img src="https://github.com/flav-code.png?size=85" width=85><br><sub>flav-code</sub>](https://github.com/flav-code) | [<img src="https://github.com/toutcourtlll.png?size=85" width=85><br><sub>toutcourtlll</sub>](https://github.com/toutcourtlll) | [<img src="https://github.com/t1m0t-p.png?size=85" width=85><br><sub>t1m0t-p</sub>](https://github.com/t1m0t-p)
 | :---: | :---: | :---: |
 
 Manager
-| [<img src="https://github.com/maitrecraft1234.png?size=85" width=85><br><sub>[maitrecraft1234</sub>](https://github.com/maitrecraft1234)
+| [<img src="https://github.com/maitrecraft1234.png?size=85" width=85><br><sub>maitrecraft1234</sub>](https://github.com/maitrecraft1234)
 | :---: |
 
 <h2 align=center>
