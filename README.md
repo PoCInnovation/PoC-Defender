@@ -1,18 +1,25 @@
 > If you see this section, you've just created a repository using [PoC Innovation's Open-Source project template](https://github.com/PoCInnovation/open-source-project-template). Check the [getting started guide](./.github/getting-started.md).
 
-# [PROJECT'S NAME]
+# PoC-Defender
 
-[Project's description]
+Create a proxy and block malicious requests
 
 ## How does it work?
 
-[Explain how this project is working]
+It works by creating a proxy server that listens for incoming requests. When a request is received, the server checks if the request is malicious or not. If it is, the server blocks the request and returns an error message. If it is not, the server forwards the request to the intended destination.
 
 ## Getting Started
 
 ### Installation
 
-[Explain how to install all of the project's dependencies]
+- Clone the repository
+```bash
+git clone git@github.com:PoCInnovation/PoC-Defender.git
+```
+- Execute the following command
+```bash
+go run src/main.go
+```
 
 ### Quickstart
 
@@ -31,11 +38,11 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team ❤️
 
 Developers
-| [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy)
+| [<img src="https://github.com/flav-code.png?size=85" width=85><br><sub>[flav-code]</sub>](https://github.com/flav-code) | [<img src="https://github.com/toutcourtlll.png?size=85" width=85><br><sub>[toutcourtlll]</sub>](https://github.com/toutcourtlll) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy)
 | :---: | :---: | :---: |
 
 Manager
-| [<img src="https://github.com/adrienfort.png?size=85" width=85><br><sub>[Manager's name]</sub>](https://github.com/adrienfort)
+| [<img src="https://github.com/maitrecraft1234.png?size=85" width=85><br><sub>[maitrecraft1234</sub>](https://github.com/maitrecraft1234)
 | :---: |
 
 <h2 align=center>
