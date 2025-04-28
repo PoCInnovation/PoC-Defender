@@ -11,7 +11,7 @@ import (
 )
 
 func proxy(c *gin.Context) {
-	remote, err := url.Parse("http://localhost:9000")
+	remote, err := url.Parse("http://localhost:9001")
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Erreur de parsing de l'URL du backend")
 		return
