@@ -1,32 +1,54 @@
 > If you see this section, you've just created a repository using [PoC Innovation's Open-Source project template](https://github.com/PoCInnovation/open-source-project-template). Check the [getting started guide](./.github/getting-started.md).
 
-# PoC-Defender
+# PoC Defender
 
-Create a proxy and block malicious requests
+## Overview
+PoC Defender is a project that sets up a Go application using the Gin framework to proxy requests to a backend service. It also integrates Prometheus for monitoring and Grafana for visualization of metrics.
 
 ## How does it work?
 
 It works by creating a proxy server that listens for incoming requests. When a request is received, the server checks if the request is malicious or not. If it is, the server blocks the request and returns an error message. If it is not, the server forwards the request to the intended destination.
 
+## Project Structure
+```
+PoC-Defender
+├── src
+│   └── main.go          # Main application code
+├── docker-compose.yml    # Docker Compose configuration
+├── Dockerfile            # Dockerfile for building the Go application
+├── prometheus
+│   └── prometheus.yml   # Prometheus configuration file
+└── README.md            # Project documentation
+```
+
 ## Getting Started
 
-### Installation
+### Prerequisites
+- Docker
+- Docker Compose
 
-- Clone the repository
-```bash
-git clone git@github.com:PoCInnovation/PoC-Defender.git
-```
+### Setup
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd PoC-Defender
+   ```
 
-### Quickstart
+2. Build and run the application with Docker Compose:
+   ```
+   docker compose up --build
+   ```
 
-- Execute the following command
-```bash
-go run src/main.go
-```
+### Accessing the Application
+- The Go application will be available at `http://127.0.0.1:9000`.
+- Prometheus will be available at `http://127.0.0.1:9090`.
+- Grafana will be available at `http://127.0.0.1:3000`.
 
-### Usage
+### Monitoring
+- Configure Prometheus to scrape metrics from the Go application by modifying the `prometheus/prometheus.yml` file as needed.
 
-[Explain how to use this project]
+### Grafana
+- Use Grafana to visualize the metrics collected by Prometheus. You can set up dashboards to monitor the performance and health of the Go application.
 
 ## Get involved
 

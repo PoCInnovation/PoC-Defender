@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:9000:9000"
+    networks:
+      - app-network
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "127.0.0.1:9090:9090"
+    networks:
+      - app-network
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
