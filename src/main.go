@@ -7,6 +7,9 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"strings"
+
+	"github.com/gin-gonic/gin"
+	_ "github.com/prometheus/client_golang/prometheus"
 )
 
 func RateLimiter() gin.HandlerFunc {
@@ -23,7 +26,7 @@ func RateLimiter() gin.HandlerFunc {
 }
 
 func proxy(c *gin.Context) {
-	remote, err := url.Parse("http://localhost:8082")
+	remote, err := url.Parse("http://localhost:9001")
 	if err != nil {
 		c.String(http.StatusInternalServerError, "URL Parsing error")
 		return
@@ -42,8 +45,11 @@ func proxy(c *gin.Context) {
 }
 
 func main() {
+	initMetrics()
 	r := gin.Default()
 	r.Use(RateLimiter())
+	r.Use(MetricsMiddleware())
+	RegisterMetricsEndpoint(r)
 	r.Any("/proxy/*proxyPath", proxy)
-	r.Run(":8081")
+	r.Run(":9000")
 }
