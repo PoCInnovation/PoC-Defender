@@ -1,22 +1,20 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"net/http/httputil"
-	"net/url"
 	"strings"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
+
+	"MyRevProxy/config"
 )
 
-func proxy(c *gin.Context) {
-	remote, err := url.Parse("http://localhost:9001")
-	if err != nil {
-		c.String(http.StatusInternalServerError, "Erreur de parsing de l'URL du backend")
-		return
-	}
-	proxy := httputil.NewSingleHostReverseProxy(remote)
+func proxy(c *gin.Context, config *config.Config) {
+	proxy := httputil.NewSingleHostReverseProxy(config.BackendURL)
 	originalDirector := proxy.Director
 	proxy.Director = func(req *http.Request) {
 		originalDirector(req)
@@ -24,16 +22,23 @@ func proxy(c *gin.Context) {
 		if proxyPath == "" {
 			proxyPath = "/"
 		}
-		req.URL.Path = strings.TrimSuffix(remote.Path, "/") + proxyPath
+		req.URL.Path = strings.TrimSuffix(config.BackendURL.Path, "/") + proxyPath
 	}
 	proxy.ServeHTTP(c.Writer, c.Request)
 }
 
 func main() {
+	config, err := config.LoadConfig()
+	if err != nil {
+		log.Fatalf("Configuration error: %v", err)
+	}
 	initMetrics()
 	r := gin.Default()
 	r.Use(MetricsMiddleware())
 	RegisterMetricsEndpoint(r)
-	r.Any("/proxy/*proxyPath", proxy)
-	r.Run(":9000")
+	r.Any("/proxy/*proxyPath", func(c *gin.Context) {
+		proxy(c, config)
+	})
+	port := strconv.Itoa(config.ServerPort)
+	r.Run(":" + port)
 }
