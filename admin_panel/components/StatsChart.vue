@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white p-4 rounded-2xl shadow">
     <h2 class="text-xl mb-2">Traffic Stats</h2>
-    <LineChart :chart-data="chartData" />
+    <Line :data="chartData" />
   </div>
 </template>
 
