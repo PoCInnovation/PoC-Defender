@@ -26,10 +26,36 @@ services:
     volumes:
       - ./application/grafana/provisioning:/etc/grafana/provisioning
 
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pocdefender
+    ports:
+      - "127.0.0.1:5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    ports:
+      - "127.0.0.1:6379:6379"
+    networks:
+      - app-network
+    volumes:
+      - redis_data:/data
+
 networks:
   app-network:
     driver: bridge
 
 volumes:
   prometheus_data:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
     driver: local

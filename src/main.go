@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"github.com/gin-gonic/gin"
+	"golang.org/x/time/rate"
 	"net/http"
 	"net/http/httputil"
 	"strings"
@@ -13,6 +15,19 @@ import (
 	"MyRevProxy/config"
 )
 
+func RateLimiter() gin.HandlerFunc {
+	limiter := rate.NewLimiter(1, 4)
+	return func(c *gin.Context) {
+		if limiter.Allow() {
+			c.Next()
+		} else {
+			c.JSON(http.StatusTooManyRequests, gin.H{
+				"message": "Limite exceed",
+			})
+		}
+	}
+}
+  
 func proxy(c *gin.Context, config *config.Config) {
 	proxy := httputil.NewSingleHostReverseProxy(config.BackendURL)
 	originalDirector := proxy.Director
@@ -34,6 +49,7 @@ func main() {
 	}
 	initMetrics()
 	r := gin.Default()
+	r.Use(RateLimiter())
 	r.Use(MetricsMiddleware())
 	RegisterMetricsEndpoint(r)
 	r.Any("/proxy/*proxyPath", func(c *gin.Context) {
